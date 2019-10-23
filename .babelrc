@@ -1,21 +1,27 @@
 {
-  "presets": ["module:metro-react-native-babel-preset"],
+  "presets": [
+    "module:metro-react-native-babel-preset"
+  ],
   "env": {
     "production": {
-      "plugins": ["react-native-paper/babel"]
+      "plugins": [
+        "react-native-paper/babel"
+      ]
     }
   },
   "plugins": [
     [
       "module-resolver",
       {
-        "root": ["./src"],
+        "root": [
+          "./src"
+        ],
         "alias": {
-          "navigation": "./src/navigation",
-          "enums": "./src/enums",
-          "modules": "./src/modules",
-          "services": "./src/services",
-          "components": "./src/components"
+          "@navigation": "./src/navigation",
+          "@enums": "./src/enums",
+          "@modules": "./src/modules",
+          "@services": "./src/services",
+          "@components": "./src/components"
         }
       }
     ]

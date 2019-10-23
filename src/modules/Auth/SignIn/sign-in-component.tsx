@@ -1,40 +1,20 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Headline, TextInput, HelperText, Button } from "react-native-paper";
+import TextField from "@components/TextField/text-field-component";
 
-export default function App() {
+export default function SignIn() {
   return (
     <View style={styles.container}>
       <Headline>Sign In</Headline>
       <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.textField}
+        <TextField
           label="Email"
-          keyboardType="email-address"
-          // value={this.state.name}
-          // error={!this._isUsernameValid(this.state.name)}
-          // onChangeText={name => this.setState({ name })}
         />
-        {/* <HelperText
-          type="error"
-          // visible={!this._isUsernameValid(this.state.name)}
-        >
-          Error: Only letters are allowed
-        </HelperText> */}
-        <TextInput
-          style={styles.textField}
+        <TextField
           label="Password"
-
-          // value={this.state.name}
-          // error={!this._isUsernameValid(this.state.name)}
-          // onChangeText={name => this.setState({ name })}
+          isPassword={true}
         />
-        {/* <HelperText
-          type="error"
-          // visible={!this._isUsernameValid(this.state.name)}
-        >
-          Error: Only letters are allowed
-        </HelperText> */}
       </View>
       <Button
         style={styles.button}

@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { ActivityIndicator, Colors } from "react-native-paper";
-import routes from "enums/routes";
-import { getAuthToken } from "services/storage";
+import routes from "@enums/routes";
+import { getAuthToken } from "@services/storage";
 
 const AuthLoader = props => {
   useEffect(() => {

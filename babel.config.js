@@ -13,11 +13,11 @@ module.exports = function(api) {
         {
           root: ["./src"],
           alias: {
-            navigation: "./src/navigation",
-            enums: "./src/enums",
-            modules: "./src/modules",
-            services: "./src/services",
-            components: "./src/components"
+            "@navigation": "./src/navigation",
+            "@enums": "./src/enums",
+            "@modules": "./src/modules",
+            "@services": "./src/services",
+            "@components": "./src/components"
           }
         }
       ]
