@@ -1,30 +1,53 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Headline, TextInput, HelperText, Button } from "react-native-paper";
+import { StyleSheet, View } from "react-native";
+import { Headline, Button } from "react-native-paper";
+import { Formik, FormikProps } from 'formik';
 import TextField from "@components/TextField/text-field-component";
 
-export default function SignIn() {
+type FormValues = {
+  email: string;
+  password: string;
+}
+
+type Props = {
+  initialValues: FormValues;
+}
+
+export default function SignIn({ initialValues }: Props) {
   return (
-    <View style={styles.container}>
-      <Headline>Sign In</Headline>
-      <View style={styles.inputContainer}>
-        <TextField
-          label="Email"
-        />
-        <TextField
-          label="Password"
-          isPassword={true}
-        />
-      </View>
-      <Button
-        style={styles.button}
-        icon="camera"
-        mode="contained"
-        onPress={() => console.log("Pressed")}
-      >
-        Sign In
+    <Formik
+      initialValues={initialValues}
+      onSubmit={values => console.log(values)}
+    >
+      {(props: FormikProps<FormValues>) => (
+        <View style={styles.container}>
+          <Headline>Sign In</Headline>
+          <View style={styles.inputContainer}>
+            <TextField
+              label="Email"
+              handleChange={props.handleChange('email')}
+              handleBlur={props.handleBlur('email')}
+              value={props.values.email}
+            />
+            <TextField
+              label="Password"
+              isPassword={true}
+              handleChange={props.handleChange('password')}
+              handleBlur={props.handleBlur('password')}
+              value={props.values.password}
+            />
+          </View>
+          <Button
+            style={styles.button}
+            icon="camera"
+            mode="contained"
+            onPress={() => console.log("Pressed")}
+          >
+            Sign In
       </Button>
-    </View>
+        </View>
+      )}
+    </Formik>
   );
 }
 

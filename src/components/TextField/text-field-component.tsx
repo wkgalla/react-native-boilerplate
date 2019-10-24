@@ -1,12 +1,13 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
+import { StyleSheet, NativeSyntheticEvent, TextInputFocusEventData } from "react-native";
 import { TextInput } from "react-native-paper";
 
 type Props = {
   value: string;
   label: string;
-  isPassword: boolean;
-  handleChange: () => void;
-  handleBlur: () => void;
+  isPassword?: boolean;
+  handleChange: (text: string) => void
+  handleBlur: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void
 }
 
 const TextField = ({
@@ -18,9 +19,8 @@ const TextField = ({
 }: Props) => {
   return (
     <TextInput
-      // style={styles.textField}
+      style={styles.textField}
       label={label}
-      keyboardType="email-address"
       value={value}
       onChangeText={handleChange}
       onBlur={handleBlur}
@@ -30,5 +30,27 @@ const TextField = ({
     />
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 20,
+    marginBottom: 20
+  },
+  inputContainer: {
+    width: "100%",
+    paddingVertical: 30
+  },
+  button: {
+    // marginVertical: 5
+  },
+  textField: {
+    marginVertical: 5,
+    backgroundColor: "white"
+  }
+});
+
 
 export default TextField;
