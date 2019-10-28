@@ -1,32 +1,19 @@
 {
-  "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "jsx": "react-native",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
-    "moduleResolution": "node",
-    "noEmit": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "baseUrl": "./src",
-    "paths": {
-      "@navigation/*": [
-        "navigation/*"
-      ],
-      "@enums/*": [
-        "enums/*"
-      ],
-      "@modules/*": [
-        "modules/*"
-      ],
-      "@services/*": [
-        "services/*"
-      ],
-      "@components/*": [
-        "components/*"
-      ]
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "jsx": "react-native",
+        "lib": ["dom", "esnext"],
+        "moduleResolution": "node",
+        "noEmit": true,
+        "skipLibCheck": true,
+        "resolveJsonModule": true,
+        "baseUrl": "./src",
+        "paths": {
+            "#navigation/*": ["navigation/*"],
+            "#enums/*": ["enums/*"],
+            "#modules/*": ["modules/*"],
+            "#services/*": ["services/*"],
+            "#components/*": ["components/*"]
+        }
     }
-  }
 }

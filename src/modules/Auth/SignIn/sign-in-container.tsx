@@ -6,8 +6,6 @@ const initialValues = {
     password: ''
 };
 
-const SignInContainer = () => (
-    <SignInForm initialValues={initialValues} />
-);
+const SignInContainer = () => <SignInForm initialValues={initialValues} />;
 
 export default SignInContainer;
