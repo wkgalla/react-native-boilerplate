@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
 import { Headline, Button } from 'react-native-paper';
 import { Formik, FormikProps } from 'formik';
+import styled from 'styled-components/native';
 import TextField from '#components/TextField/text-field-component';
 
 type FormValues = {
@@ -13,6 +13,19 @@ type Props = {
     initialValues: FormValues;
 };
 
+const Container = styled.View`
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding-horizontal: 20;
+    margin-bottom: 20;
+`;
+
+const Wrapper = styled.View`
+    width: 100%;
+    padding-vertical: 30;
+`;
+
 export default function SignIn({ initialValues }: Props) {
     return (
         <Formik
@@ -20,9 +33,9 @@ export default function SignIn({ initialValues }: Props) {
             onSubmit={values => console.log(values)}
         >
             {(props: FormikProps<FormValues>) => (
-                <View style={styles.container}>
+                <Container>
                     <Headline>Sign In</Headline>
-                    <View style={styles.inputContainer}>
+                    <Wrapper>
                         <TextField
                             label="Email"
                             handleChange={props.handleChange('email')}
@@ -31,43 +44,21 @@ export default function SignIn({ initialValues }: Props) {
                         />
                         <TextField
                             label="Password"
-                            isPassword={true}
+                            isPassword
                             handleChange={props.handleChange('password')}
                             handleBlur={props.handleBlur('password')}
                             value={props.values.password}
                         />
-                    </View>
+                    </Wrapper>
                     <Button
-                        style={styles.button}
                         icon="camera"
                         mode="contained"
                         onPress={() => console.log('Pressed')}
                     >
                         Sign In
                     </Button>
-                </View>
+                </Container>
             )}
         </Formik>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: 20,
-        marginBottom: 20
-    },
-    inputContainer: {
-        width: '100%',
-        paddingVertical: 30
-    },
-    button: {
-        // marginVertical: 5
-    },
-    textField: {
-        marginVertical: 5,
-        backgroundColor: 'white'
-    }
-});

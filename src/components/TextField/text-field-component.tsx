@@ -1,31 +1,7 @@
 import React from 'react';
-import {
-    StyleSheet,
-    NativeSyntheticEvent,
-    TextInputFocusEventData
-} from 'react-native';
+import { NativeSyntheticEvent, TextInputFocusEventData } from 'react-native';
 import { TextInput } from 'react-native-paper';
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: 20,
-        marginBottom: 20
-    },
-    inputContainer: {
-        width: '100%',
-        paddingVertical: 30
-    },
-    button: {
-        // marginVertical: 5
-    },
-    textField: {
-        marginVertical: 5,
-        backgroundColor: 'white'
-    }
-});
+import styled from 'styled-components/native';
 
 type Props = {
     value: string;
@@ -35,6 +11,11 @@ type Props = {
     handleBlur: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
 };
 
+const StyledTextInput = styled(TextInput)`
+    margin-vertical: 5;
+    background-color: white;
+`;
+
 const TextField = ({
     value,
     label,
@@ -43,8 +24,7 @@ const TextField = ({
     handleBlur
 }: Props) => {
     return (
-        <TextInput
-            style={styles.textField}
+        <StyledTextInput
             label={label}
             value={value}
             onChangeText={handleChange}
