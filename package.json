@@ -38,8 +38,15 @@
         "eslint-plugin-import": "^2.18.2",
         "eslint-plugin-jsx-a11y": "^6.2.3",
         "eslint-plugin-react": "^7.16.0",
+        "husky": "^3.0.9",
         "jest-expo": "^35.0.0",
+        "pretty-quick": "^2.0.0",
         "typescript": "^3.6.4"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged && npm run lint"
+        }
     },
     "jest": {
         "preset": "react-native"
