@@ -1,6 +1,7 @@
 import React from 'react';
 import { Headline, Button } from 'react-native-paper';
 import { Formik, FormikProps } from 'formik';
+import * as Yup from 'yup';
 import styled from 'styled-components/native';
 import TextField from '#components/TextField/text-field-component';
 
@@ -26,10 +27,18 @@ const Wrapper = styled.View`
     padding-vertical: 30;
 `;
 
+const SigninSchema = Yup.object().shape({
+    email: Yup.string()
+        .email('Invalid email')
+        .required('Email is Required'),
+    password: Yup.string().required('Password is required')
+});
+
 export default function SignIn({ initialValues }: Props) {
     return (
         <Formik
             initialValues={initialValues}
+            validationSchema={SigninSchema}
             onSubmit={values => console.log(values)}
         >
             {(props: FormikProps<FormValues>) => (
@@ -38,22 +47,26 @@ export default function SignIn({ initialValues }: Props) {
                     <Wrapper>
                         <TextField
                             label="Email"
-                            handleChange={props.handleChange('email')}
-                            handleBlur={props.handleBlur('email')}
+                            onChangeText={props.handleChange('email')}
+                            onBlur={props.handleBlur('email')}
                             value={props.values.email}
+                            errorMsg={props.errors.email}
+                            touched={props.touched.email}
                         />
                         <TextField
                             label="Password"
-                            isPassword
-                            handleChange={props.handleChange('password')}
-                            handleBlur={props.handleBlur('password')}
+                            secureTextEntry
+                            onChangeText={props.handleChange('password')}
+                            onBlur={props.handleBlur('password')}
                             value={props.values.password}
+                            errorMsg={props.errors.password}
+                            touched={props.touched.password}
                         />
                     </Wrapper>
                     <Button
                         icon="camera"
                         mode="contained"
-                        onPress={() => console.log('Pressed')}
+                        onPress={props.handleSubmit as any}
                     >
                         Sign In
                     </Button>

@@ -1,14 +1,12 @@
 import React from 'react';
-import { NativeSyntheticEvent, TextInputFocusEventData } from 'react-native';
-import { TextInput } from 'react-native-paper';
+import { View } from 'react-native';
+import { TextInput, HelperText, TextInputProps } from 'react-native-paper';
 import styled from 'styled-components/native';
 
 type Props = {
     value: string;
-    label: string;
-    isPassword?: boolean;
-    handleChange: (text: string) => void;
-    handleBlur: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
+    errorMsg: string;
+    touched: boolean;
 };
 
 const StyledTextInput = styled(TextInput)`
@@ -18,21 +16,27 @@ const StyledTextInput = styled(TextInput)`
 
 const TextField = ({
     value,
+    errorMsg,
+    touched,
     label,
-    isPassword,
-    handleChange,
-    handleBlur
-}: Props) => {
+    secureTextEntry,
+    onChangeText,
+    onBlur
+}: TextInputProps & Props) => {
     return (
-        <StyledTextInput
-            label={label}
-            value={value}
-            onChangeText={handleChange}
-            onBlur={handleBlur}
-            secureTextEntry={isPassword}
-            // error={!this._isUsernameValid(this.state.name)}
-            // onChangeText={name => this.setState({ name })}
-        />
+        <View>
+            <StyledTextInput
+                label={label}
+                value={value}
+                onChangeText={onChangeText}
+                onBlur={onBlur}
+                secureTextEntry={secureTextEntry}
+                error={errorMsg && touched}
+            />
+            <HelperText type="error" visible={errorMsg && touched}>
+                {errorMsg}
+            </HelperText>
+        </View>
     );
 };
 
