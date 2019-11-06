@@ -4,9 +4,8 @@ import { TextInput, HelperText, TextInputProps } from 'react-native-paper';
 import styled from 'styled-components/native';
 
 type Props = {
-    value: string;
+    ref?: (ref: unknown) => void;
     errorMsg: string;
-    touched: boolean;
 };
 
 const StyledTextInput = styled(TextInput)`
@@ -15,9 +14,8 @@ const StyledTextInput = styled(TextInput)`
 `;
 
 const TextField = ({
-    value,
+    ref,
     errorMsg,
-    touched,
     label,
     secureTextEntry,
     onChangeText,
@@ -26,14 +24,14 @@ const TextField = ({
     return (
         <View>
             <StyledTextInput
+                ref={ref}
                 label={label}
-                value={value}
                 onChangeText={onChangeText}
                 onBlur={onBlur}
                 secureTextEntry={secureTextEntry}
-                error={errorMsg && touched}
+                error={Boolean(errorMsg)}
             />
-            <HelperText type="error" visible={errorMsg && touched}>
+            <HelperText type="error" visible={Boolean(errorMsg)}>
                 {errorMsg}
             </HelperText>
         </View>

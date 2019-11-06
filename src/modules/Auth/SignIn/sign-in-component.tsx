@@ -1,8 +1,9 @@
 import React from 'react';
 import { Headline, Button } from 'react-native-paper';
-import { Formik, FormikProps } from 'formik';
 import * as Yup from 'yup';
+import useForm from 'react-hook-form';
 import styled from 'styled-components/native';
+import { Alert } from 'react-native';
 import TextField from '#components/TextField/text-field-component';
 
 type FormValues = {
@@ -30,48 +31,41 @@ const Wrapper = styled.View`
 const SigninSchema = Yup.object().shape({
     email: Yup.string()
         .email('Invalid email')
-        .required('Email is Required'),
+        .required('Email is required'),
     password: Yup.string().required('Password is required')
 });
 
 export default function SignIn({ initialValues }: Props) {
+    const { register, setValue, handleSubmit, errors } = useForm<FormValues>({
+        defaultValues: initialValues,
+        validationSchema: SigninSchema
+    });
+    const onSubmit = data => Alert.alert('Form Data', data);
     return (
-        <Formik
-            initialValues={initialValues}
-            validationSchema={SigninSchema}
-            onSubmit={values => console.log(values)}
-        >
-            {(props: FormikProps<FormValues>) => (
-                <Container>
-                    <Headline>Sign In</Headline>
-                    <Wrapper>
-                        <TextField
-                            label="Email"
-                            onChangeText={props.handleChange('email')}
-                            onBlur={props.handleBlur('email')}
-                            value={props.values.email}
-                            errorMsg={props.errors.email}
-                            touched={props.touched.email}
-                        />
-                        <TextField
-                            label="Password"
-                            secureTextEntry
-                            onChangeText={props.handleChange('password')}
-                            onBlur={props.handleBlur('password')}
-                            value={props.values.password}
-                            errorMsg={props.errors.password}
-                            touched={props.touched.password}
-                        />
-                    </Wrapper>
-                    <Button
-                        icon="camera"
-                        mode="contained"
-                        onPress={props.handleSubmit as any}
-                    >
-                        Sign In
-                    </Button>
-                </Container>
-            )}
-        </Formik>
+        <Container>
+            <Headline>Sign In</Headline>
+            <Wrapper>
+                <TextField
+                    label="Email"
+                    ref={register({ name: 'email' })}
+                    onChangeText={text => setValue('email', text)}
+                    errorMsg={errors.email && errors.email.message}
+                />
+                <TextField
+                    label="Password"
+                    secureTextEntry
+                    ref={register({ name: 'password' })}
+                    onChangeText={text => setValue('password', text)}
+                    errorMsg={errors.password && errors.password.message}
+                />
+            </Wrapper>
+            <Button
+                icon="camera"
+                mode="contained"
+                onPress={handleSubmit(onSubmit)}
+            >
+                Sign In
+            </Button>
+        </Container>
     );
 }
