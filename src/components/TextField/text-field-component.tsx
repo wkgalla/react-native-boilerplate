@@ -9,7 +9,7 @@ type Props = {
 };
 
 const StyledTextInput = styled(TextInput)`
-    margin-vertical: 5;
+    /* margin-vertical: 5; */
     background-color: white;
 `;
 
@@ -29,7 +29,7 @@ const TextField = ({
                 onChangeText={onChangeText}
                 onBlur={onBlur}
                 secureTextEntry={secureTextEntry}
-                error={Boolean(errorMsg)}
+                // error={Boolean(errorMsg)}
             />
             <HelperText type="error" visible={Boolean(errorMsg)}>
                 {errorMsg}

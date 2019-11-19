@@ -41,26 +41,37 @@ const StyledButton = styled(Button)`
     margin-vertical: 6;
 `;
 
-const SigninSchema = Yup.object().shape({
+const SignupSchema = Yup.object().shape({
+    name: Yup.string().required('Name is required'),
     email: Yup.string()
         .email('Invalid email')
         .required('Email is required'),
-    password: Yup.string().required('Password is required')
+    password: Yup.string().required('Password is required'),
+    confirmPassword: Yup.string().oneOf(
+        [Yup.ref('password'), null],
+        'Passwords must match'
+    )
 });
 
-const navigateToSignUp = () => NavigationService.replace(Routes.SIGN_UP);
+const navigateToSignIn = () => NavigationService.replace(Routes.SIGN_IN);
 
-export default function SignIn({ initialValues }: Props) {
+export default function SignUp({ initialValues }: Props) {
     const { register, setValue, handleSubmit, errors } = useForm<FormValues>({
         defaultValues: initialValues,
-        validationSchema: SigninSchema
+        validationSchema: SignupSchema
     });
     const onSubmit = data => Alert.alert('Form Data', data);
     return (
         <StyledKeyboardAwareView extraHeight={200}>
             <Container>
-                <Headline>Sign In</Headline>
+                <Headline>Sign Up</Headline>
                 <Wrapper>
+                    <TextField
+                        label="Name"
+                        ref={register({ name: 'name' })}
+                        onChangeText={text => setValue('name', text)}
+                        errorMsg={errors.name && errors.name.message}
+                    />
                     <TextField
                         label="Email"
                         ref={register({ name: 'email' })}
@@ -74,18 +85,27 @@ export default function SignIn({ initialValues }: Props) {
                         onChangeText={text => setValue('password', text)}
                         errorMsg={errors.password && errors.password.message}
                     />
+                    <TextField
+                        label="Confirm Password"
+                        secureTextEntry
+                        ref={register({ name: 'confirmPassword' })}
+                        onChangeText={text => setValue('confirmPassword', text)}
+                        errorMsg={
+                            errors.confirmPassword &&
+                            errors.confirmPassword.message
+                        }
+                    />
                 </Wrapper>
-
                 <StyledButton mode="contained" onPress={handleSubmit(onSubmit)}>
-                    Sign In
+                    Sign Up
                 </StyledButton>
                 <StyledButton
                     mode="text"
                     uppercase={false}
                     color="grey"
-                    onPress={navigateToSignUp}
+                    onPress={navigateToSignIn}
                 >
-                    Don&apos;t have an account? Sign up
+                    Already have an account? Sign in
                 </StyledButton>
             </Container>
         </StyledKeyboardAwareView>

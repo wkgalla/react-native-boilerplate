@@ -1,24 +1,20 @@
 import React, { useEffect } from 'react';
-import { NavigationScreenProp } from 'react-navigation';
 import { ActivityIndicator, Colors } from 'react-native-paper';
 import styled from 'styled-components/native';
+import NavigationService from '#services/navigation-service';
 import routes from '#enums/routes';
 import { getAuthToken } from '#services/storage';
-
-type Props = {
-    navigation: NavigationScreenProp<{}>;
-};
 
 const StyledSpinner = styled(ActivityIndicator)`
     flex: 1;
 `;
 
-const AuthLoader = ({ navigation }: Props) => {
+const AuthLoader = () => {
     useEffect(() => {
         getAuthToken().then(userToken => {
-            navigation.navigate(userToken ? routes.APP : routes.AUTH);
+            NavigationService.navigate(userToken ? routes.APP : routes.AUTH);
         });
-    }, [navigation]);
+    }, []);
     return <StyledSpinner size="large" animating color={Colors.red800} />;
 };
 
