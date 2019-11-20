@@ -1,7 +1,7 @@
 import { createStackNavigator } from 'react-navigation';
 import routes from '#enums/routes';
-import SignInScreen from '#modules/Auth/SignIn/sign-in-container';
-import SignUpScreen from '#modules/Auth/SignUp/sign-up-container';
+import SignInScreen from '#screens/SignIn/sign-in-component';
+import SignUpScreen from '#screens/SignUp/sign-up-component';
 
 const AuthStack = createStackNavigator(
     {

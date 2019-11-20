@@ -2,7 +2,7 @@ import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import routes from '#enums/routes';
 import AuthStack from '#navigation/auth';
 import AppStack from '#navigation/app';
-import AuthLoadingScreen from '#modules/Auth/AuthLoader/auth-loader-component';
+import AuthLoadingScreen from '#screens/AuthLoader/auth-loader-view';
 
 export default createAppContainer(
     createSwitchNavigator(

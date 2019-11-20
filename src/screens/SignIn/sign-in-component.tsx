@@ -1,5 +1,5 @@
 import React from 'react';
-import SignInForm from './sign-in-component';
+import SignInForm from './sign-in-view';
 
 const initialValues = {
     email: '',

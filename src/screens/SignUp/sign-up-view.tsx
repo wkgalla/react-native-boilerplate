@@ -5,7 +5,7 @@ import useForm from 'react-hook-form';
 import styled from 'styled-components/native';
 import { Alert } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import TextField from '#components/TextField/text-field-component';
+import TextField from '#components/TextField/text-field-view';
 import NavigationService from '#services/navigation-service';
 import Routes from '#enums/routes';
 

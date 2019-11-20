@@ -11,7 +11,7 @@
         "paths": {
             "#navigation/*": ["navigation/*"],
             "#enums/*": ["enums/*"],
-            "#modules/*": ["modules/*"],
+            "#screens/*": ["screens/*"],
             "#services/*": ["services/*"],
             "#components/*": ["components/*"]
         },
